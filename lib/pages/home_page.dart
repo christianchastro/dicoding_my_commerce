@@ -1,6 +1,9 @@
+import 'package:e_commerce/shared/enum/enum_category_product.dart';
+import 'package:e_commerce/shared/model/category_model.dart';
 import 'package:e_commerce/shared/model/product_model.dart';
 import 'package:e_commerce/shared/source/products.dart';
 import 'package:e_commerce/shared/styling/my_text_style.dart';
+import 'package:e_commerce/shared/widgets/filter_category.dart';
 import 'package:e_commerce/shared/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 
@@ -13,11 +16,60 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<ProductModel> listProduct = SourceProducts.listProduct;
-  // final List<ProductModel> listCart = [];
+  final List<CategoryModel> listCategory = [];
+  final List<ProductModel> listFilteredProduct = [];
 
   @override
   void initState() {
     super.initState();
+    fetchData();
+  }
+
+  void fetchData() {
+    if (mounted) {
+      setState(() {
+        listCategory.addAll([
+          ...EnumCategoryProduct.values.map((e) => CategoryModel(category: e)),
+        ]);
+        if (listCategory
+            .any((element) => element.category == EnumCategoryProduct.all)) {
+          listCategory
+              .firstWhere(
+                (element) => element.category == EnumCategoryProduct.all,
+                orElse: () => CategoryModel(category: EnumCategoryProduct.all),
+              )
+              .isSelected = true;
+        }
+        listFilteredProduct.addAll(listProduct);
+      });
+    }
+  }
+
+  void onSelectedFilterCategory(CategoryModel category) {
+    if (mounted) {
+      if (!category.isSelected) {
+        setState(() {
+          listCategory
+              .where((element) => element.isSelected)
+              .forEach((element) {
+            element.isSelected = false;
+          });
+          category.isSelected = !category.isSelected;
+          listFilteredProduct.clear();
+          if (category.category == EnumCategoryProduct.all) {
+            listFilteredProduct.addAll(listProduct);
+          } else {
+            listFilteredProduct.addAll(
+              listProduct.where(
+                (element) => element.categories.any(
+                  ((element) => element == category.category),
+                ),
+              ),
+            );
+          }
+        });
+      }
+    }
   }
 
   @override
@@ -26,8 +78,9 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("My Commerce"),
-        backgroundColor: Colors.transparent,
-        titleTextStyle: MyTextStyle.title(),
+        backgroundColor: Colors.white,
+        titleTextStyle: MyTextStyle.title(color: Colors.black),
+        elevation: 2,
       ),
       body: SafeArea(
         top: false,
@@ -61,17 +114,34 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
+              SizedBox(
+                height: 50,
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  itemCount: listCategory.length,
+                  separatorBuilder: (_, __) => const SizedBox(width: 10),
+                  itemBuilder: (context, index) => FilterCategory(
+                    category: listCategory[index],
+                    onSelected: (value) {
+                      onSelectedFilterCategory(listCategory[index]);
+                    },
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
               SizedBox(
                 height: 280,
                 child: ListView.separated(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  itemCount: listProduct.length,
+                  itemCount: listFilteredProduct.length,
                   separatorBuilder: ((_, __) => const SizedBox(width: 14)),
                   itemBuilder: (context, index) =>
-                      ProductCard(productModel: listProduct[index]),
+                      ProductCard(productModel: listFilteredProduct[index]),
                 ),
               ),
               const SizedBox(height: 20),

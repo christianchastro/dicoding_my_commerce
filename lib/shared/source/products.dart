@@ -22,7 +22,7 @@ abstract class SourceProducts {
             "https://images.tokopedia.net/img/cache/500-square/VqbcmM/2022/1/28/fb547cc4-392f-4afa-ad09-2465c17d540a.jpg.webp?ect=4g",
       ),
       price: 69000,
-      category: [EnumCategoryProduct.man, EnumCategoryProduct.sport],
+      categories: [EnumCategoryProduct.man, EnumCategoryProduct.sport],
       listColor: [
         ProductColorModel(name: "Black", color: Colors.black),
       ],
@@ -46,7 +46,7 @@ abstract class SourceProducts {
             "https://images.tokopedia.net/img/cache/500-square/VqbcmM/2022/7/19/a7997638-ec97-47bb-8a38-082c2f70e27c.jpg.webp?ect=4g",
       ),
       price: 89000,
-      category: [EnumCategoryProduct.man],
+      categories: [EnumCategoryProduct.man],
       listColor: [
         ProductColorModel(name: "Orange", color: Colors.orange),
         ProductColorModel(name: "Green", color: Colors.green),
@@ -72,7 +72,7 @@ abstract class SourceProducts {
             "https://images.tokopedia.net/img/cache/500-square/VqbcmM/2022/10/20/d7b62388-1ee0-4fab-a037-0571663154e6.jpg.webp?ect=4g",
       ),
       price: 320000,
-      category: [EnumCategoryProduct.man, EnumCategoryProduct.winter],
+      categories: [EnumCategoryProduct.man, EnumCategoryProduct.winter],
       listColor: [],
       listSize: [
         ProductSizeModel(size: "S"),
@@ -94,7 +94,7 @@ abstract class SourceProducts {
             "https://images.tokopedia.net/img/cache/500-square/VqbcmM/2022/11/28/a80c4247-1862-4d3a-9c33-fcb18233b4d4.jpg.webp?ect=4g",
       ),
       price: 499000,
-      category: [EnumCategoryProduct.sport],
+      categories: [EnumCategoryProduct.sport],
       listColor: [],
       listSize: [
         ProductSizeModel(size: "M"),
@@ -115,7 +115,7 @@ abstract class SourceProducts {
             "https://images.tokopedia.net/img/cache/500-square/VqbcmM/2021/12/16/6405c1d3-1252-439b-ac39-627abf0ba7e1.jpg.webp?ect=4g",
       ),
       price: 88000,
-      category: [EnumCategoryProduct.woman],
+      categories: [EnumCategoryProduct.woman],
       listColor: [
         ProductColorModel(name: "Pink", color: Colors.pink),
         ProductColorModel(name: "Black", color: Colors.black),
@@ -136,7 +136,7 @@ abstract class SourceProducts {
             "https://images.tokopedia.net/img/cache/500-square/VqbcmM/2020/7/8/cc55bf49-38da-4feb-b577-f9ab05d739f5.jpg.webp?ect=4g",
       ),
       price: 94000,
-      category: [EnumCategoryProduct.man],
+      categories: [EnumCategoryProduct.woman],
       listColor: [],
       listSize: [
         ProductSizeModel(size: "S"),
@@ -161,7 +161,7 @@ abstract class SourceProducts {
             "https://images.tokopedia.net/img/cache/500-square/VqbcmM/2022/2/18/aa2a7499-08e4-493f-b578-c9ea02fca035.png.webp?ect=4g",
       ),
       price: 85000,
-      category: [
+      categories: [
         EnumCategoryProduct.man,
         EnumCategoryProduct.sport,
         EnumCategoryProduct.winter

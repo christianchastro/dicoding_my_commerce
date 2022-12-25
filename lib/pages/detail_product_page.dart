@@ -1,13 +1,13 @@
 import 'package:e_commerce/shared/model/product_model.dart';
+import 'package:e_commerce/shared/widgets/product_detail_image.dart';
+import 'package:e_commerce/shared/widgets/product_detail_info.dart';
 import 'package:flutter/material.dart';
 
 class DetailProductPage extends StatefulWidget {
-  final ProductModel productModel;
-  final List<ProductModel> cartList;
+  final ProductModel product;
   const DetailProductPage({
     super.key,
-    required this.productModel,
-    required this.cartList,
+    required this.product,
   });
 
   @override
@@ -21,26 +21,17 @@ class _DetailProductPageState extends State<DetailProductPage> {
       onWillPop: () async => true,
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          leading: ElevatedButton(
-            onPressed: () {
-              if (Navigator.canPop(context)) {
-                Navigator.pop(context);
-              }
-            },
-            style: ElevatedButton.styleFrom(
-              shape: const CircleBorder(),
-              padding: const EdgeInsets.all(10),
-              backgroundColor: Colors.white.withOpacity(0.6),
-            ),
-            child: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
-          ),
-        ),
         body: SafeArea(
-          top: false,
-          child: ListView(
+          child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                ProductDetailImage(product: widget.product),
+                const SizedBox(height: 20),
+                ProductDetailInfo(product: widget.product),
+              ],
+            ),
           ),
         ),
       ),

@@ -6,12 +6,13 @@ abstract class MyTextStyle {
         fontSize: 18,
         fontWeight: FontWeight.bold,
       );
-  static TextStyle subTitle({Color? color}) => _myDefault(
+  static TextStyle subTitle({Color? color, double fontSize = 14}) => _myDefault(
         color: color,
-        fontSize: 14,
+        fontSize: fontSize,
         fontWeight: FontWeight.w500,
       );
-  static TextStyle regular({Color? color}) => _myDefault(color: color);
+  static TextStyle regular({Color? color, double fontSize = 12}) =>
+      _myDefault(color: color, fontSize: fontSize);
 
   static TextStyle _myDefault(
           {Color? color = Colors.black,

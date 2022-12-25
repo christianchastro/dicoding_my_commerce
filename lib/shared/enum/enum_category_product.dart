@@ -1,6 +1,10 @@
 enum EnumCategoryProduct {
-  man,
-  woman,
-  sport,
-  winter,
+  all("All"),
+  man("Man"),
+  woman("Woman"),
+  sport("Sport"),
+  winter("Winter");
+
+  final String text;
+  const EnumCategoryProduct(this.text);
 }

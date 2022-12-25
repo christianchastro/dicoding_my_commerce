@@ -15,9 +15,11 @@ class _FavorireButtonState extends State<FavorireButton> {
     return IconButton(
       constraints: const BoxConstraints(),
       onPressed: () {
-        setState(() {
-          widget.product.isFavorite = !widget.product.isFavorite;
-        });
+        if (mounted) {
+          setState(() {
+            widget.product.isFavorite = !widget.product.isFavorite;
+          });
+        }
       },
       icon: Icon(
         !widget.product.isFavorite

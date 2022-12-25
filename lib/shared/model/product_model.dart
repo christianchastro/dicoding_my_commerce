@@ -10,7 +10,7 @@ class ProductModel {
   final String name;
   final ProductImageModel productImageModel;
   final int price;
-  final List<EnumCategoryProduct> category;
+  final List<EnumCategoryProduct> categories;
   bool isFavorite;
   List<ProductColorModel> listColor;
   List<ProductSizeModel> listSize;
@@ -20,7 +20,7 @@ class ProductModel {
     required this.name,
     required this.productImageModel,
     required this.price,
-    required this.category,
+    required this.categories,
     this.isFavorite = false,
     required this.listColor,
     required this.listSize,
@@ -70,6 +70,13 @@ class ProductModel {
       );
     }
     return null;
+  }
+
+  String get descriptionDecode {
+    if (description != null && description!.isNotEmpty) {
+      return Uri.decodeFull(description!);
+    }
+    return "";
   }
 
   @override
