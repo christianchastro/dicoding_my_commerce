@@ -1,6 +1,6 @@
 class ProductSizeModel {
-  final int size;
-  final bool isSelected;
+  final String size;
+  bool isSelected;
   ProductSizeModel({required this.size, this.isSelected = false});
 
   @override

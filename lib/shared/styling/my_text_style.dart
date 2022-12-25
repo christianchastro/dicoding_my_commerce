@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 abstract class MyTextStyle {
   static TextStyle title({Color? color}) => _myDefault(
         color: color,
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: FontWeight.bold,
       );
   static TextStyle subTitle({Color? color}) => _myDefault(
@@ -22,5 +22,6 @@ abstract class MyTextStyle {
         fontSize: fontSize,
         fontFamily: "Roboto",
         fontWeight: fontWeight,
+        height: 1.2,
       );
 }
