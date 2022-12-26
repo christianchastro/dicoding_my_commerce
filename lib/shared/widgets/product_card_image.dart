@@ -10,21 +10,24 @@ class ProductCardImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
-      child: AspectRatio(
-        aspectRatio: 1,
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: Image.network(
-                product.productImageModel.regularImageUrl,
+      child: Hero(
+        tag: product.id,
+        child: AspectRatio(
+          aspectRatio: 1,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Image.network(
+                  product.productImageModel.regularImageUrl,
+                ),
               ),
-            ),
-            Positioned(
-              top: 4,
-              right: 4,
-              child: FavorireButton(product: product),
-            ),
-          ],
+              Positioned(
+                top: 4,
+                right: 4,
+                child: FavorireButton(product: product),
+              ),
+            ],
+          ),
         ),
       ),
     );

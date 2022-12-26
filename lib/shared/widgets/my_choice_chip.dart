@@ -1,24 +1,25 @@
-import 'package:e_commerce/shared/model/category_model.dart';
 import 'package:e_commerce/shared/styling/my_text_style.dart';
 import 'package:flutter/material.dart';
 
-class FilterCategory extends StatelessWidget {
-  final CategoryModel category;
+class MyChoiceChip extends StatelessWidget {
+  final String text;
+  final bool isSelected;
   final void Function(bool)? onSelected;
-  const FilterCategory({
+  const MyChoiceChip({
     super.key,
-    required this.category,
+    required this.text,
+    required this.isSelected,
     required this.onSelected,
   });
 
   @override
   Widget build(BuildContext context) {
     return ChoiceChip(
-      label: Text(category.category.text),
+      label: Text(text),
       labelStyle: MyTextStyle.subTitle(
-        color: !category.isSelected ? Colors.black : Colors.white,
+        color: !isSelected ? Colors.black : Colors.white,
       ),
-      selected: category.isSelected,
+      selected: isSelected,
       onSelected: onSelected,
       selectedColor: Colors.blueGrey.shade700,
       backgroundColor: Colors.white,
@@ -26,7 +27,7 @@ class FilterCategory extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(
-            color: !category.isSelected
+            color: !isSelected
                 ? Colors.blueGrey.shade200
                 : Colors.blueGrey.shade700),
       ),

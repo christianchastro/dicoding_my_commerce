@@ -3,7 +3,7 @@ import 'package:e_commerce/shared/model/category_model.dart';
 import 'package:e_commerce/shared/model/product_model.dart';
 import 'package:e_commerce/shared/source/products.dart';
 import 'package:e_commerce/shared/styling/my_text_style.dart';
-import 'package:e_commerce/shared/widgets/filter_category.dart';
+import 'package:e_commerce/shared/widgets/my_choice_chip.dart';
 import 'package:e_commerce/shared/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 
@@ -123,8 +123,9 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   itemCount: listCategory.length,
                   separatorBuilder: (_, __) => const SizedBox(width: 10),
-                  itemBuilder: (context, index) => FilterCategory(
-                    category: listCategory[index],
+                  itemBuilder: (context, index) => MyChoiceChip(
+                    text: listCategory[index].category.text,
+                    isSelected: listCategory[index].isSelected,
                     onSelected: (value) {
                       onSelectedFilterCategory(listCategory[index]);
                     },
@@ -141,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                   itemCount: listFilteredProduct.length,
                   separatorBuilder: ((_, __) => const SizedBox(width: 14)),
                   itemBuilder: (context, index) =>
-                      ProductCard(productModel: listFilteredProduct[index]),
+                      ProductCard(product: listFilteredProduct[index]),
                 ),
               ),
               const SizedBox(height: 20),
@@ -163,7 +164,7 @@ class _HomePageState extends State<HomePage> {
                   itemCount: listProduct.length,
                   separatorBuilder: ((_, __) => const SizedBox(width: 14)),
                   itemBuilder: (context, index) =>
-                      ProductCard(productModel: listProduct[index]),
+                      ProductCard(product: listProduct[index]),
                 ),
               ),
             ],

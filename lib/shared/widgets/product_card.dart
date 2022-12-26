@@ -4,30 +4,38 @@ import 'package:e_commerce/shared/styling/my_text_style.dart';
 import 'package:e_commerce/shared/widgets/product_card_image.dart';
 import 'package:flutter/material.dart';
 
-class ProductCard extends StatelessWidget {
-  final ProductModel productModel;
-  const ProductCard({super.key, required this.productModel});
+class ProductCard extends StatefulWidget {
+  final ProductModel product;
+  const ProductCard({super.key, required this.product});
 
+  @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
+      onTap: () async {
+        await Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => DetailProductPage(product: productModel),
+            builder: (_) => DetailProductPage(product: widget.product),
           ),
         );
+        if (mounted) {
+          setState(() {});
+        }
       },
       child: SizedBox(
         width: 200,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ProductCardImage(product: productModel),
+            ProductCardImage(product: widget.product),
             const SizedBox(height: 8),
             Text(
-              productModel.name,
+              widget.product.name,
               style: MyTextStyle.subTitle(color: Colors.grey.shade600),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
@@ -35,7 +43,7 @@ class ProductCard extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              productModel.convertedPrice,
+              widget.product.convertedPrice,
               style: MyTextStyle.regular(),
             ),
           ],
