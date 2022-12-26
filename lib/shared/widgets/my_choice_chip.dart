@@ -31,7 +31,6 @@ class MyChoiceChip extends StatelessWidget {
                 ? Colors.blueGrey.shade200
                 : Colors.blueGrey.shade700),
       ),
-      // disabledColor: Colors.blue,
     );
   }
 }
