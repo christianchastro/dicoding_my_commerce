@@ -12,20 +12,23 @@ class FavorireButton extends StatefulWidget {
 class _FavorireButtonState extends State<FavorireButton> {
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      constraints: const BoxConstraints(),
-      onPressed: () {
-        if (mounted) {
-          setState(() {
-            widget.product.isFavorite = !widget.product.isFavorite;
-          });
-        }
-      },
-      icon: Icon(
-        !widget.product.isFavorite
-            ? Icons.favorite_border_rounded
-            : Icons.favorite_rounded,
-        color: !widget.product.isFavorite ? Colors.grey.shade800 : Colors.red,
+    return Material(
+      color: Colors.transparent,
+      child: IconButton(
+        constraints: const BoxConstraints(),
+        onPressed: () {
+          if (mounted) {
+            setState(() {
+              widget.product.isFavorite = !widget.product.isFavorite;
+            });
+          }
+        },
+        icon: Icon(
+          !widget.product.isFavorite
+              ? Icons.favorite_border_rounded
+              : Icons.favorite_rounded,
+          color: !widget.product.isFavorite ? Colors.grey.shade800 : Colors.red,
+        ),
       ),
     );
   }

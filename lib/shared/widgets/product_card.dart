@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 
 class ProductCard extends StatefulWidget {
   final ProductModel product;
-  const ProductCard({super.key, required this.product});
+  final String tag;
+  const ProductCard({super.key, required this.product, required this.tag});
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -20,7 +21,10 @@ class _ProductCardState extends State<ProductCard> {
         await Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => DetailProductPage(product: widget.product),
+            builder: (_) => DetailProductPage(
+              product: widget.product,
+              tag: widget.tag,
+            ),
           ),
         );
         if (mounted) {
@@ -32,7 +36,10 @@ class _ProductCardState extends State<ProductCard> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ProductCardImage(product: widget.product),
+            ProductCardImage(
+              product: widget.product,
+              tag: widget.tag,
+            ),
             const SizedBox(height: 8),
             Text(
               widget.product.name,

@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 
 class DetailProductPage extends StatefulWidget {
   final ProductModel product;
-  const DetailProductPage({
-    super.key,
-    required this.product,
-  });
+  final String tag;
+  const DetailProductPage(
+      {super.key, required this.product, required this.tag});
 
   @override
   State<DetailProductPage> createState() => _DetailProductPageState();
@@ -27,7 +26,10 @@ class _DetailProductPageState extends State<DetailProductPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                ProductDetailImage(product: widget.product),
+                ProductDetailImage(
+                  product: widget.product,
+                  tag: widget.tag,
+                ),
                 const SizedBox(height: 20),
                 ProductDetailInfo(product: widget.product),
               ],

@@ -4,12 +4,17 @@ import 'package:flutter/material.dart';
 
 class ProductDetailImage extends StatelessWidget {
   final ProductModel product;
-  const ProductDetailImage({super.key, required this.product});
+  final String tag;
+  const ProductDetailImage({
+    super.key,
+    required this.product,
+    required this.tag,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: product.id,
+      tag: "$tag-${product.id}",
       child: Stack(
         children: [
           AspectRatio(
@@ -27,15 +32,18 @@ class ProductDetailImage extends StatelessWidget {
               children: [
                 CircleAvatar(
                   backgroundColor: Colors.white,
-                  child: IconButton(
-                    onPressed: () {
-                      if (Navigator.canPop(context)) {
-                        Navigator.pop(context);
-                      }
-                    },
-                    color: Colors.black,
-                    icon:
-                        const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: IconButton(
+                      onPressed: () {
+                        if (Navigator.canPop(context)) {
+                          Navigator.pop(context);
+                        }
+                      },
+                      color: Colors.black,
+                      icon: const Icon(Icons.arrow_back_ios_new_rounded,
+                          size: 20),
+                    ),
                   ),
                 ),
                 CircleAvatar(

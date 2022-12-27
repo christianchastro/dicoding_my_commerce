@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 
 class ProductCardImage extends StatelessWidget {
   final ProductModel product;
-  const ProductCardImage({super.key, required this.product});
+  final String tag;
+  const ProductCardImage({super.key, required this.product, required this.tag});
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: Hero(
-        tag: product.id,
+        tag: "$tag-${product.id}",
         child: AspectRatio(
           aspectRatio: 1,
           child: Stack(

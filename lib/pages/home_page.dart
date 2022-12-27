@@ -141,8 +141,10 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   itemCount: listFilteredProduct.length,
                   separatorBuilder: ((_, __) => const SizedBox(width: 14)),
-                  itemBuilder: (context, index) =>
-                      ProductCard(product: listFilteredProduct[index]),
+                  itemBuilder: (context, index) => ProductCard(
+                    product: listFilteredProduct[index],
+                    tag: "find-your-fashions",
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -163,8 +165,10 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   itemCount: listProduct.length,
                   separatorBuilder: ((_, __) => const SizedBox(width: 14)),
-                  itemBuilder: (context, index) =>
-                      ProductCard(product: listProduct[index]),
+                  itemBuilder: (context, index) => ProductCard(
+                    product: listProduct[index],
+                    tag: "most-popular",
+                  ),
                 ),
               ),
             ],
