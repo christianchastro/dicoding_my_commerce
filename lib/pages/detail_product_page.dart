@@ -3,17 +3,12 @@ import 'package:e_commerce/shared/widgets/product_detail_image.dart';
 import 'package:e_commerce/shared/widgets/product_detail_info.dart';
 import 'package:flutter/material.dart';
 
-class DetailProductPage extends StatefulWidget {
+class DetailProductPage extends StatelessWidget {
   final ProductModel product;
   final String tag;
   const DetailProductPage(
       {super.key, required this.product, required this.tag});
 
-  @override
-  State<DetailProductPage> createState() => _DetailProductPageState();
-}
-
-class _DetailProductPageState extends State<DetailProductPage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -27,11 +22,11 @@ class _DetailProductPageState extends State<DetailProductPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 ProductDetailImage(
-                  product: widget.product,
-                  tag: widget.tag,
+                  product: product,
+                  tag: tag,
                 ),
                 const SizedBox(height: 20),
-                ProductDetailInfo(product: widget.product),
+                ProductDetailInfo(product: product),
               ],
             ),
           ),
