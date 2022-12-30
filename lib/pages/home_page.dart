@@ -15,9 +15,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<ProductModel> listProduct = SourceProducts.listProduct;
-  final List<CategoryModel> listCategory = [];
-  final List<ProductModel> listFilteredProduct = [];
+  final List<ProductModel> _listProduct = SourceProducts.listProduct;
+  final List<CategoryModel> _listCategory = [];
+  final List<ProductModel> _listFilteredProduct = [];
 
   @override
   void initState() {
@@ -28,19 +28,19 @@ class _HomePageState extends State<HomePage> {
   void fetchData() {
     if (mounted) {
       setState(() {
-        listCategory.addAll([
+        _listCategory.addAll([
           ...EnumCategoryProduct.values.map((e) => CategoryModel(category: e)),
         ]);
-        if (listCategory
+        if (_listCategory
             .any((element) => element.category == EnumCategoryProduct.all)) {
-          listCategory
+          _listCategory
               .firstWhere(
                 (element) => element.category == EnumCategoryProduct.all,
                 orElse: () => CategoryModel(category: EnumCategoryProduct.all),
               )
               .isSelected = true;
         }
-        listFilteredProduct.addAll(listProduct);
+        _listFilteredProduct.addAll(_listProduct);
       });
     }
   }
@@ -49,18 +49,18 @@ class _HomePageState extends State<HomePage> {
     if (mounted) {
       if (!category.isSelected) {
         setState(() {
-          listCategory
+          _listCategory
               .where((element) => element.isSelected)
               .forEach((element) {
             element.isSelected = false;
           });
           category.isSelected = !category.isSelected;
-          listFilteredProduct.clear();
+          _listFilteredProduct.clear();
           if (category.category == EnumCategoryProduct.all) {
-            listFilteredProduct.addAll(listProduct);
+            _listFilteredProduct.addAll(_listProduct);
           } else {
-            listFilteredProduct.addAll(
-              listProduct.where(
+            _listFilteredProduct.addAll(
+              _listProduct.where(
                 (element) => element.categories.any(
                   ((element) => element == category.category),
                 ),
@@ -121,13 +121,13 @@ class _HomePageState extends State<HomePage> {
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  itemCount: listCategory.length,
+                  itemCount: _listCategory.length,
                   separatorBuilder: (_, __) => const SizedBox(width: 10),
                   itemBuilder: (context, index) => MyChoiceChip(
-                    text: listCategory[index].category.text,
-                    isSelected: listCategory[index].isSelected,
+                    text: _listCategory[index].category.text,
+                    isSelected: _listCategory[index].isSelected,
                     onSelected: (value) {
-                      onSelectedFilterCategory(listCategory[index]);
+                      onSelectedFilterCategory(_listCategory[index]);
                     },
                   ),
                 ),
@@ -139,10 +139,10 @@ class _HomePageState extends State<HomePage> {
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  itemCount: listFilteredProduct.length,
+                  itemCount: _listFilteredProduct.length,
                   separatorBuilder: ((_, __) => const SizedBox(width: 14)),
                   itemBuilder: (context, index) => ProductCard(
-                    product: listFilteredProduct[index],
+                    product: _listFilteredProduct[index],
                     tag: "find-your-fashions",
                   ),
                 ),
@@ -163,10 +163,10 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   reverse: true,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  itemCount: listProduct.length,
+                  itemCount: _listProduct.length,
                   separatorBuilder: ((_, __) => const SizedBox(width: 14)),
                   itemBuilder: (context, index) => ProductCard(
-                    product: listProduct[index],
+                    product: _listProduct[index],
                     tag: "most-popular",
                   ),
                 ),
